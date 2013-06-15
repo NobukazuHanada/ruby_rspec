@@ -3,23 +3,29 @@
 require "spec_helper"
 
 describe "validator" do
+  shared_examples_for :validation_true do |zip_codes|
+    zip_codes.each{|zip_code| it{ validation(zip_code).should be_true} }
+  end  
+
+  shared_examples_for :validation_false do |zip_codes|
+    zip_codes.each{|zip_code| it{ validation(zip_code).should be_false} }
+  end
+  
   describe "other string" do 
-    it{ validation("").should be_false }
-    it{ validation("1111").should be_false } # 異常系
-    it{ validation("77777").should be_false } # 異常系
-    it{ validation("777788888888888").should be_false } # 異常系
+    it_should_behave_like :validation_false, ["","1111","77777","777778888888"]
   end
 
   describe "3 strings" do
-    ["000","111"].each{|zip_code| it{ validation(zip_code).should be_true } } 
-    ["aaa"].each{|zip_code| it{ validation(zip_code).should be_false } } 
+    it_should_behave_like :validation_true, ["000","111"]
+    it_should_behave_like :validation_false, ["aaa"]
   end
   
   describe "7 strings" do
-    it{ validation("1111111").should be_true }
+    it_should_behave_like :validation_true, ["1111111"]
   end
   
   describe "ハイフンをチェックする" do
-    it{ validation("111-1111").should be_true }
+    it_should_behave_like :validation_true, ["111-1111"]
   end
 end
+
