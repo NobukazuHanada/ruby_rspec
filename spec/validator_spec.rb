@@ -6,7 +6,7 @@ describe "validator" do
   end
 
   describe "3 strings" do
-    it{ ["000","111"].each{|zip_code| validation(zip_code).should be_true} }
-    it{ ["aaa"].each{|zip_code| validation(zip_code).should be_false} }
+    ["000","111"].each{|zip_code| it{ validation(zip_code).should be_true } } 
+    ["aaa"].each{|zip_code| it{ validation(zip_code).should be_false } } 
   end
 end
