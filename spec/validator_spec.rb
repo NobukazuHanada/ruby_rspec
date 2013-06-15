@@ -26,6 +26,7 @@ describe "validator" do
   
   describe "ハイフンをチェックする" do
     it_should_behave_like :validation_true, ["111-1111"]
+    it_should_behave_like :validation_false, ["1111-111"]
   end
 end
 
