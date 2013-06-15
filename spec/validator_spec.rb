@@ -1,8 +1,11 @@
 require "spec_helper"
 
 describe "validator" do
-  describe "0 string" do 
+  describe "other string" do 
     it{ validation("").should be_false }
+    it{ validation("1111").should be_false } # 異常系
+    it{ validation("77777").should be_false } # 異常系
+    it{ validation("777788888888888").should be_false } # 異常系
   end
 
   describe "3 strings" do
