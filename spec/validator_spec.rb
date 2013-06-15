@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 require "spec_helper"
 
 describe "validator" do
@@ -15,5 +17,9 @@ describe "validator" do
   
   describe "7 strings" do
     it{ validation("1111111").should be_true }
+  end
+  
+  describe "ハイフンをチェックする" do
+    it{ validation("111-1111").should be_true }
   end
 end
